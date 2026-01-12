@@ -1,13 +1,13 @@
-package com.chanzo.animalmgtservice;
+package com.chanzo.animalregistryservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AnimalMgtServiceApplication {
+public class AnimalRegistryServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AnimalMgtServiceApplication.class, args);
+        SpringApplication.run(AnimalRegistryServiceApplication.class, args);
     }
 
 }

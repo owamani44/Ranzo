@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.chanzo</groupId>
-    <artifactId>animal-mgt-service</artifactId>
+    <artifactId>animal-registry-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>animal-mgt-service</name>
-    <description>animal-mgt-service</description>
+    <name>animal-registry-service</name>
+    <description>animal-registry-service</description>
     <url/>
     <licenses>
         <license/>
@@ -28,9 +28,6 @@
     </scm>
     <properties>
         <java.version>25</java.version>
-        <grpc.version>1.77.1</grpc.version>
-        <protobuf-java.version>4.33.2</protobuf-java.version>
-        <spring-grpc.version>1.0.1</spring-grpc.version>
     </properties>
     <dependencies>
         <dependency>
@@ -45,15 +42,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-services</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.grpc</groupId>
-            <artifactId>spring-grpc-server-web-spring-boot-starter</artifactId>
-        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -79,23 +74,7 @@
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.grpc</groupId>
-            <artifactId>spring-grpc-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.grpc</groupId>
-                <artifactId>spring-grpc-dependencies</artifactId>
-                <version>${spring-grpc.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>
@@ -110,30 +89,6 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>io.github.ascopes</groupId>
-                <artifactId>protobuf-maven-plugin</artifactId>
-                <version>4.0.3</version>
-                <configuration>
-                    <protoc>${protobuf-java.version}</protoc>
-                    <binaryMavenPlugins>
-                        <binaryMavenPlugin>
-                            <groupId>io.grpc</groupId>
-                            <artifactId>protoc-gen-grpc-java</artifactId>
-                            <version>${grpc.version}</version>
-                            <options>@generated=omit</options>
-                        </binaryMavenPlugin>
-                    </binaryMavenPlugins>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
