@@ -30,4 +30,11 @@ public class HealthEventController {
         return ResponseEntity.ok().body(healthEventResponseDTO);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<HealthEventResponseDTO> getEventById(@PathVariable Integer eventID){
+        HealthEventResponseDTO healthEventResponseDTO = healthEventService.getEventById(eventID);
+        return ResponseEntity.ok().body(healthEventResponseDTO);
+    }
+
+
 }

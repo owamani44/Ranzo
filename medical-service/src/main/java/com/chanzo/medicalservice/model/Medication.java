@@ -6,23 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class MedicalAction {
+public class Medication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer medicalID;
 
-    @ManyToMany
-    @JoinTable(
-            name = "medical_plan",
-            joinColumns = @JoinColumn(name="medicailID"),
-            inverseJoinColumns = @JoinColumn(name = "tpID")
-    )
-    private List<TreatmentPlan> treatmentPlan;
 
     @Enumerated(EnumType.STRING)
     private MedicationType type;

@@ -28,4 +28,16 @@ public class HealthEventService {
                 toModel(healthEventRequestDTO));
         return HealthEventMapper.toDTO(newHealthEvent);
     }
+
+    public HealthEventResponseDTO getEventById(Integer eventID){
+        HealthEvent event = healthEventRepo.findById(eventID).
+                orElseThrow(()-> new IllegalArgumentException("Event not found"));
+
+        return HealthEventMapper.toDTO(event);
+    }
+
+    public void deleteEvent(Integer eventID){
+        healthEventRepo.deleteById(eventID);
+    }
+
 }

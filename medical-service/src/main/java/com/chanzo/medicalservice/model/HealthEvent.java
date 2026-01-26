@@ -31,12 +31,8 @@ public class HealthEvent {
     @NotNull
     private String recordedBy;
 
-    @ManyToMany
-    @JoinTable(
-            name = "event_treatment",
-            joinColumns =@JoinColumn(name="eventID"),
-            inverseJoinColumns =@JoinColumn(name="tpID")
-    )
-    private List<TreatmentPlan> treatmentPlans;
+    @OneToMany(mappedBy = "healthEvent")
+    private List<FollowUp> followUps;
+
 
 }

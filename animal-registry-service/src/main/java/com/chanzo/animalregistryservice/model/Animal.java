@@ -32,6 +32,9 @@ public class Animal {
     @NotNull
     private String kraalAssignment;
 
+    @Enumerated(EnumType.STRING)
+    private AnimalStatus status;
+
     @NotNull
     private LocalDate birthDate;
 

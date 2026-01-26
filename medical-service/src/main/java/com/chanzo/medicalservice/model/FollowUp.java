@@ -16,8 +16,8 @@ public class FollowUp {
     private Integer followUpId;
 
     @ManyToOne
-    @JoinColumn(name = "plan_followUp_ID")
-    private TreatmentPlan treatmentPlan;
+    @JoinColumn(name="report_follow")
+    private HealthEvent healthEvent;
 
     @Enumerated(EnumType.STRING)
     private Outcome outcome;

@@ -2,6 +2,7 @@ package com.chanzo.animalregistryservice.service;
 
 import com.chanzo.animalregistryservice.dtos.AnimalRequestDTO;
 import com.chanzo.animalregistryservice.dtos.AnimalResponseDTO;
+import com.chanzo.animalregistryservice.exceptions.AnimalNotFound;
 import com.chanzo.animalregistryservice.exceptions.TagNumberAlreadyExists;
 import com.chanzo.animalregistryservice.mapper.AnimalMapper;
 import com.chanzo.animalregistryservice.model.Animal;
@@ -33,6 +34,12 @@ public class AnimalService {
 
 
         return AnimalMapper.toDTO(newAnimal);
+    }
+
+    public AnimalResponseDTO updateAnimalStatus(Long id, AnimalRequestDTO animalRequestDTO){
+        Animal newAnimal = animalRepo.findById(id).orElseThrow(
+                ()-> new AnimalNotFound("Animal not found" + id));
+
     }
 
     public void deleteAnimal(Long id){
