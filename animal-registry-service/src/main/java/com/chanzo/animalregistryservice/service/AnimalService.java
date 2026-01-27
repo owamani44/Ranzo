@@ -6,8 +6,11 @@ import com.chanzo.animalregistryservice.exceptions.AnimalNotFound;
 import com.chanzo.animalregistryservice.exceptions.TagNumberAlreadyExists;
 import com.chanzo.animalregistryservice.mapper.AnimalMapper;
 import com.chanzo.animalregistryservice.model.Animal;
+import com.chanzo.animalregistryservice.model.AnimalOutbox;
+import com.chanzo.animalregistryservice.repo.AnimalOutboxRepo;
 import com.chanzo.animalregistryservice.repo.AnimalRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,33 +18,59 @@ import java.util.List;
 public class AnimalService {
 
     private final AnimalRepo animalRepo;
+    private final AnimalOutboxRepo animalOutboxRepo;
 
-    public AnimalService(AnimalRepo animalRepo) {
+
+    public AnimalService(AnimalRepo animalRepo, AnimalOutboxRepo animalOutboxRepo) {
         this.animalRepo = animalRepo;
+        this.animalOutboxRepo = animalOutboxRepo;
     }
-
+                          /**GET ALL ANIMALS**/
     public List<AnimalResponseDTO> getAnimals(){
         List<Animal> animals = animalRepo.findAll();
         return animals.stream().map(AnimalMapper::toDTO).toList();
     }
 
+                        /**GET ANIMAL BY TAG NUMBER METHOD**/
+    public AnimalResponseDTO getByTgNumber(String tagNumber){
+        Animal animal = animalRepo.findByTagNumber(tagNumber).
+                orElseThrow(()->new AnimalNotFound("Animal not found"+ tagNumber));
+
+                return AnimalMapper.toDTO(animal);
+    }
+
+                    /**REGISTERING ANIMAL METHOD**/
+    @Transactional
     public AnimalResponseDTO createAnimal(AnimalRequestDTO animalRequestDTO){
         if(animalRepo.existsByTagNumber(animalRequestDTO.getTagNumber()))
             throw new TagNumberAlreadyExists("An animal with the same tag number already exists"
                     + animalRequestDTO.getTagNumber());
 
-        Animal newAnimal = AnimalMapper.toModel(animalRequestDTO);
+        Animal newAnimal = animalRepo.save(AnimalMapper.toModel(animalRequestDTO));
 
+        AnimalOutbox outbox = animalOutboxRepo.save(AnimalMapper.toOutboxModel(newAnimal));
 
         return AnimalMapper.toDTO(newAnimal);
     }
 
+                    /**UPDATE ANIMAL STATUS**/
+    @Transactional
     public AnimalResponseDTO updateAnimalStatus(Long id, AnimalRequestDTO animalRequestDTO){
         Animal newAnimal = animalRepo.findById(id).orElseThrow(
                 ()-> new AnimalNotFound("Animal not found" + id));
 
-    }
+            newAnimal.setStatus(animalRequestDTO.getStatus());
+            newAnimal.setUpdatedOn(animalRequestDTO.getUpdatedOn());
 
+           Animal updatedAnimal = animalRepo.save(newAnimal);
+
+           //Save to outbox database
+           AnimalOutbox outbox =animalOutboxRepo.save(AnimalMapper.toOutboxModel(updatedAnimal));
+
+
+        return AnimalMapper.toDTO(updatedAnimal);
+    }
+                    /**DELETE ANIMAL**/
     public void deleteAnimal(Long id){
         animalRepo.deleteById(id);
     }

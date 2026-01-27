@@ -1,6 +1,8 @@
 package com.chanzo.animalregistryservice.dtos;
 
+import com.chanzo.animalregistryservice.model.AnimalStatus;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,25 +15,31 @@ import java.time.LocalDateTime;
 public class AnimalRequestDTO {
 
     @NotBlank
-    @Size(min = 6 , max=6 , message = "Tag Number should be valid")
+    @Size(min = 6 , max=8 , message = "Tag Number should be valid")
     private String tagNumber;
 
     @NotBlank
     @Size(min =2,max=12)
     private String species;
 
+
+    private AnimalStatus status;
+
     @NotBlank
     @Size(min =5, max=12 , message="Specify the type of breed for the listed animal")
     private String breed;
 
     @NotBlank
-    private LocalDate birthdate;
+    @Size(message = "Birth date of the animal should be included")
+    private String birthdate;
 
     @NotBlank
-    @Size(min = 6 , max = 12, message = "Animal gender must be specified")
+    @Size(min = 2, max = 12, message = "Animal gender must be specified")
     private String gender;
 
     private String kraalAssignment;
 
-    private LocalDateTime registeredOn = LocalDateTime.now();
+    private LocalDateTime registeredOn=LocalDateTime.now();
+
+    private LocalDateTime updatedOn = LocalDateTime.now();
 }
