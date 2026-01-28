@@ -34,7 +34,7 @@ public class AnimalService {
                         /**GET ANIMAL BY TAG NUMBER METHOD**/
     public AnimalResponseDTO getByTgNumber(String tagNumber){
         Animal animal = animalRepo.findByTagNumber(tagNumber).
-                orElseThrow(()->new AnimalNotFound("Animal not found"+ tagNumber));
+                orElseThrow(()->new AnimalNotFound("Animal not found "+ tagNumber));
 
                 return AnimalMapper.toDTO(animal);
     }

@@ -3,15 +3,25 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for animal-registry-service" enabled="true">
+      <profile name="Annotation profile for medical-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="medical-service" />
+        <module name="animal-registry-service" />
+      </profile>
+      <profile name="Annotation profile for weight-record-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="animal-registry-service" />
-        <module name="medical-service" />
+        <module name="weight-record-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +33,7 @@
       <module name="animal-mgt-service" options="-parameters" />
       <module name="animal-registry-service" options="-parameters" />
       <module name="medical-service" options="-parameters" />
+      <module name="weight-record-service" options="-parameters" />
     </option>
   </component>
 </project>

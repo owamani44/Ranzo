@@ -18,9 +18,8 @@ public class AnimalOutbox {
     private Integer outBoxID;
     @Column(name="aggregate_id")
     private String aggregateID;
-
-    //@Type(JsonType.class)
-    //@Column(columnDefinition = "jsonb")
+    @Column(name="registered")
+    private Boolean registered;
     private String payload;
     @Column(name="created_on")
     private LocalDateTime createdOn;

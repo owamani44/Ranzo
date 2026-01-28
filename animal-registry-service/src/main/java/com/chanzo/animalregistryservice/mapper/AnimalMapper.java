@@ -43,7 +43,7 @@ public static AnimalOutbox toOutboxModel(Animal animal){
         animalOutbox.setAggregateID(animal.getTagNumber());
         animalOutbox.setPayload(new ObjectMapper().writeValueAsString(animal));
         animalOutbox.setCreatedOn(animal.getUpdatedOn());
-
+        animalOutbox.setRegistered(false);
 
 
         return animalOutbox;
