@@ -1,0 +1,8 @@
+
+PATCH http://localhost:8080/weight/1
+Content-Type: application/json
+
+{
+  "weight": 167,
+  "tagNumber": "K01-001"
+}

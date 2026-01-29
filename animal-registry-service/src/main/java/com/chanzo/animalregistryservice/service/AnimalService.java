@@ -32,7 +32,7 @@ public class AnimalService {
     }
 
                         /**GET ANIMAL BY TAG NUMBER METHOD**/
-    public AnimalResponseDTO getByTgNumber(String tagNumber){
+    public AnimalResponseDTO getByTagNumber(String tagNumber){
         Animal animal = animalRepo.findByTagNumber(tagNumber).
                 orElseThrow(()->new AnimalNotFound("Animal not found "+ tagNumber));
 
@@ -43,7 +43,7 @@ public class AnimalService {
     @Transactional
     public AnimalResponseDTO createAnimal(AnimalRequestDTO animalRequestDTO){
         if(animalRepo.existsByTagNumber(animalRequestDTO.getTagNumber()))
-            throw new TagNumberAlreadyExists("An animal with the same tag number already exists"
+            throw new TagNumberAlreadyExists("An animal with the same tag number already exists  "
                     + animalRequestDTO.getTagNumber());
 
         Animal newAnimal = animalRepo.save(AnimalMapper.toModel(animalRequestDTO));
@@ -55,7 +55,7 @@ public class AnimalService {
 
                     /**UPDATE ANIMAL STATUS**/
     @Transactional
-    public AnimalResponseDTO updateAnimalStatus(Long id, AnimalRequestDTO animalRequestDTO){
+    public AnimalResponseDTO updateAnimalStatus(Integer id, AnimalRequestDTO animalRequestDTO){
         Animal newAnimal = animalRepo.findById(id).orElseThrow(
                 ()-> new AnimalNotFound("Animal not found" + id));
 
@@ -71,7 +71,7 @@ public class AnimalService {
         return AnimalMapper.toDTO(updatedAnimal);
     }
                     /**DELETE ANIMAL**/
-    public void deleteAnimal(Long id){
+    public void deleteAnimal(Integer id){
         animalRepo.deleteById(id);
     }
 }

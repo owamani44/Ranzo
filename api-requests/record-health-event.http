@@ -1,0 +1,13 @@
+### GET request to example server
+POST http://localhost:8080/health-events
+Content-Type: application/json
+
+{
+  "tagNumber": "K01-001",
+  "eventType": "VACCINATION",
+  "symptoms": "Weak and has dull eyes",
+  "recordedBy": "Amos Twinamatsiko",
+  "observedDate": ""
+}
+
+###
