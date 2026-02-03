@@ -2,6 +2,7 @@ package com.chanzo.medicalservice.service;
 
 import com.chanzo.medicalservice.dtos.HealthEventRequestDTO;
 import com.chanzo.medicalservice.dtos.HealthEventResponseDTO;
+import com.chanzo.medicalservice.exceptions.AnimalNotFound;
 import com.chanzo.medicalservice.mapper.HealthEventMapper;
 import com.chanzo.medicalservice.model.HealthEvent;
 import com.chanzo.medicalservice.repo.HealthEventRepo;
@@ -29,6 +30,11 @@ public class HealthEventService {
         return HealthEventMapper.toDTO(newHealthEvent);
     }
 
+    public HealthEventResponseDTO getEventByTagNumber(String tagNumber){
+        HealthEvent event1 = healthEventRepo.findByTagNumber(tagNumber).
+                orElseThrow(()->new AnimalNotFound("Animal with the following tag number not found: "+ tagNumber));
+        return HealthEventMapper.toDTO(event1);
+    }
     public HealthEventResponseDTO getEventById(Integer eventID){
         HealthEvent event = healthEventRepo.findById(eventID).
                 orElseThrow(()-> new IllegalArgumentException("Event not found"));

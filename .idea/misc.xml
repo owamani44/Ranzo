@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/animal-registry-service/pom.xml" />
         <option value="$PROJECT_DIR$/medical-service/pom.xml" />
         <option value="$PROJECT_DIR$/weight-record-service/pom.xml" />
+        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

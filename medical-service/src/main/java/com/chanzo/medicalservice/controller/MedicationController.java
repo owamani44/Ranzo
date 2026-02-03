@@ -22,13 +22,18 @@ public class MedicationController {
         return ResponseEntity.ok().body(dto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{medicalID}")
     public ResponseEntity<MedicationResponseDTO> getMedicationById(@PathVariable Integer medicalID){
         MedicationResponseDTO dto1 = medicationService.getActionById(medicalID);
         return ResponseEntity.ok().body(dto1);
     }
+    @GetMapping("/by-tag/{tagNumber}")
+    public ResponseEntity<MedicationResponseDTO> getMedicationByTagNumber(@PathVariable String tagNumber){
+        MedicationResponseDTO dto2 = medicationService.getMedicationByTagNumber(tagNumber);
+        return ResponseEntity.ok().body(dto2);
+    }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{medicalID}")
     public ResponseEntity<MedicationResponseDTO> deleteMedicationById(@PathVariable Integer medicalID){
         medicationService.deleteAction(medicalID);
         return ResponseEntity.noContent().build();

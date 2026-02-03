@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 8070
+
+  spring:
+    cloud:
+      gateway:
+        routes:
+          -id: animal-registry-service
+          uri: http://animal-registry-service:8080
+        predicates:
+          -path= /api/animals/**
+        filters:
+          -strip-prefix=1

@@ -8,6 +8,7 @@ public class MedicationMapper {
     public static MedicationResponseDTO toDTO(Medication medication) {
         MedicationResponseDTO dto= new MedicationResponseDTO();
         dto.setMedicalID(medication.getMedicalID());
+        dto.setTagNumber(medication.getTagNumber());
         dto.setType(medication.getType());
         dto.setDrugName(medication.getDrugName());
         dto.setDosage(medication.getDosage());
@@ -19,6 +20,7 @@ public class MedicationMapper {
 
     public static Medication toModel (MedicationRequestDTO medicationRequestDTO){
         Medication action = new Medication();
+        action.setTagNumber(medicationRequestDTO.getTagNumber());
         action.setType(medicationRequestDTO.getType());
         action.setDrugName(medicationRequestDTO.getDrugName());
         action.setDosage(medicationRequestDTO.getDosage());

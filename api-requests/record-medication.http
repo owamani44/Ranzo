@@ -1,0 +1,15 @@
+### GET request to example server
+
+POST http://localhost:8081/medication
+Content-Type: application/json
+
+{
+  "tagNumber": "K01-001",
+  "type": "VACCINATION",
+  "drugName": "Oxytocin",
+  "dosage": "100ml * 2 ",
+  "administeredBy": "John Bwete",
+  "administeredAt": ""
+}
+
+###

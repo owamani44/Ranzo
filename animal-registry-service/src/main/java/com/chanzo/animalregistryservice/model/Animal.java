@@ -37,7 +37,7 @@ public class Animal {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private AnimalStatus status=AnimalStatus.ALIVE;;
+    private AnimalStatus status;
 
     @NotNull
     @Column(name="birth_date")

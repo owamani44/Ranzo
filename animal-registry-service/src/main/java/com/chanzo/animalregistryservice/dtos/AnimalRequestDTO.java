@@ -22,7 +22,7 @@ public class AnimalRequestDTO {
     @Size(min =2,max=12)
     private String species;
 
-
+    @NotNull
     private AnimalStatus status;
 
     @NotBlank
@@ -37,6 +37,7 @@ public class AnimalRequestDTO {
     @Size(min = 2, max = 12, message = "Animal gender must be specified")
     private String gender;
 
+    @NotBlank
     private String kraalAssignment;
 
     private LocalDateTime registeredOn=LocalDateTime.now();

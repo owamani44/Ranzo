@@ -15,11 +15,13 @@ public class AnimalMapper {
         AnimalResponseDTO animalDTO = new AnimalResponseDTO();
         animalDTO.setId(animal.getId());
         animalDTO.setTagNumber(animal.getTagNumber());
+        animalDTO.setStatus(animal.getStatus());
         animalDTO.setSpecies(animal.getSpecies());
         animalDTO.setBreed(animal.getBreed());
         animalDTO.setGender(animal.getGender());
         animalDTO.setKraalAssignment(animal.getKraalAssignment());
         animalDTO.setBirthDate(animal.getBirthDate());
+        animalDTO.setRegisteredOn(animal.getRegisteredOn());
         animalDTO.setUpdatedOn(animal.getUpdatedOn());
 
         return animalDTO;
@@ -30,6 +32,7 @@ public static Animal toModel(AnimalRequestDTO animalRequestDTO){
         animal.setTagNumber(animalRequestDTO.getTagNumber());
         animal.setSpecies(animalRequestDTO.getSpecies());
         animal.setBreed(animalRequestDTO.getBreed());
+        animal.setStatus(animalRequestDTO.getStatus());
         animal.setGender(animalRequestDTO.getGender());
         animal.setKraalAssignment(animalRequestDTO.getKraalAssignment());
         animal.setBirthDate(LocalDate.parse(animalRequestDTO.getBirthdate()));

@@ -47,8 +47,7 @@ public class HealthEvent {
 
 }
 
-//    @OneToMany(mappedBy = "healthEvent")
-//    private List<FollowUp> followUps;
+
 
 
 

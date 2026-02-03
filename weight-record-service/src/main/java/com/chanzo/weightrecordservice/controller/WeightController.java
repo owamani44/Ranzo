@@ -26,7 +26,8 @@ public class WeightController {
     }
 
     @GetMapping("/by-tag/{tagNumber}")
-    public ResponseEntity<WeightResponseDTO> getWeightRecord(String tagNumber){
+    public ResponseEntity<WeightResponseDTO> getWeightRecord(@PathVariable String tagNumber){
+
         WeightResponseDTO dto = weightService.getWeightRecordByTagNumber(tagNumber);
         return  ResponseEntity.ok().body(dto);
     }

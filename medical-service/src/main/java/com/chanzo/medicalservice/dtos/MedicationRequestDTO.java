@@ -12,6 +12,8 @@ public class MedicationRequestDTO {
     @NotBlank
     private MedicationType type;
     @NotBlank
+    private String tagNumber;
+    @NotBlank
     private String drugName;
     @NotBlank
     private String dosage;

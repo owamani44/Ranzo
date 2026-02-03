@@ -36,5 +36,11 @@ public class HealthEventController {
         return ResponseEntity.ok().body(healthEventResponseDTO);
     }
 
+    @GetMapping("/by-tag/{tagNumber}")
+    public ResponseEntity<HealthEventResponseDTO> getEventByTagNumber(@PathVariable String tagNumber){
+        HealthEventResponseDTO healthEventResponseDTO= healthEventService.getEventByTagNumber(tagNumber);
+        return ResponseEntity.ok().body(healthEventResponseDTO);
+    }
+
 
 }

@@ -17,6 +17,10 @@ public class Medication {
     @Column(name = "medical_id")
     private Integer medicalID;
 
+    @NotNull
+    @Column(name="tag_number")
+    private String tagNumber;
+
     @Enumerated(EnumType.STRING)
     private MedicationType type;
 
@@ -31,9 +35,14 @@ public class Medication {
     @Column(name="administered_by")
     private String administeredBy;
 
-    @NotNull
+
     @Column(name="administered_at")
     private LocalDateTime administeredAt;
+
+    @PrePersist
+    public void OnCreate(){
+        this.administeredAt=LocalDateTime.now();
+    }
 
 
 }
