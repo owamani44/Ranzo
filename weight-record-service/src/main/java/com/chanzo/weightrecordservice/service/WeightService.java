@@ -46,7 +46,12 @@ public class WeightService {
        Weight newWeight = weightRepo.findById(weightId).
                orElseThrow(()-> new AnimalNotFound("Animal not found: "+ weightId));
 
-       newWeight.setWeight(weightRequestDTO.getWeight());
+       Long previousWeight = newWeight.getWeight();
+       Long incomingWeight = weightRequestDTO.getWeight();
+       if (previousWeight != null && incomingWeight != null && incomingWeight < previousWeight) {
+           newWeight.setMedicalFollowUpRequired(true);
+       }
+       newWeight.setWeight(incomingWeight);
        Weight updatedWeight = weightRepo.save(newWeight);
        return WeightMapper.toDTO(updatedWeight);
     }

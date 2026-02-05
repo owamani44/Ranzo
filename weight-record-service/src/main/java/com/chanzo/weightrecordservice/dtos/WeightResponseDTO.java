@@ -10,6 +10,7 @@ public class WeightResponseDTO {
     private Long weightId;
     private String tagNumber;
     private Long weight;
+    private boolean medicalFollowUpRequired;
     private LocalDateTime firstMeasuredOn;
     private LocalDateTime lastMeasuredOn;
 }

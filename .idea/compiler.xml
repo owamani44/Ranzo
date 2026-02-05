@@ -28,6 +28,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="authentication-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -39,6 +40,7 @@
       <module name="animal-mgt-service" options="-parameters" />
       <module name="animal-registry-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
+      <module name="authentication-service" options="-parameters" />
       <module name="medical-service" options="-parameters" />
       <module name="weight-record-service" options="-parameters" />
     </option>

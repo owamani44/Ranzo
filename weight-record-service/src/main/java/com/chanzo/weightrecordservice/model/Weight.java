@@ -19,6 +19,8 @@ public class Weight {
     @Column(name="tag_number")
     private String tagNumber;
     private Long weight;
+    @Column(name="medical_follow_up_required")
+    private boolean medicalFollowUpRequired;
     @Column(name="first_measured_on")
     private LocalDateTime firstMeasuredOn;
     @Column(name="last_measured_on")

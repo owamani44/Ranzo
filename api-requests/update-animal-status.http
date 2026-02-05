@@ -1,0 +1,10 @@
+### GET request to example server
+PATCH http://localhost:8080/animals/9
+Content-Type: application/json
+
+{
+  "status": "LOST",
+  "updatedOn": ""
+}
+
+###
