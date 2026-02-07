@@ -1,5 +1,5 @@
 ### GET request to example server
-POST http://localhost:8080/weight
+POST http://localhost:8082/weight
 Content-Type: application/json
 
 {

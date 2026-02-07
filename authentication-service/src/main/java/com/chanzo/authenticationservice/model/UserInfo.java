@@ -1,9 +1,6 @@
 package com.chanzo.authenticationservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,20 +10,26 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-public class User {
+@Table(name="user_info")
+public class UserInfo {
     @Id
     @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @NotNull
+    @Column(name="first_name")
     private  String firstName;
     @NotNull
+    @Column(name="last_name")
     private String lastName;
     @NotNull
+    @Column(unique=true)
     private String username;
 
     @NotNull
     private String password;
+
+    private String roles;
 
 
 

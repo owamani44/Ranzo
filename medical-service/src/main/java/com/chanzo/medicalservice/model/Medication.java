@@ -24,6 +24,9 @@ public class Medication {
     @Enumerated(EnumType.STRING)
     private MedicationType type;
 
+    @Enumerated(EnumType.STRING)
+    private MedicationStatus status;
+
     @NotNull
     @Column(name="drug_name")
     private String drugName;
