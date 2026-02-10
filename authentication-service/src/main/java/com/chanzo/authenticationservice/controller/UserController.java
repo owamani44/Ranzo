@@ -1,26 +1,52 @@
 package com.chanzo.authenticationservice.controller;
 
+import com.chanzo.authenticationservice.dto.LoginRequestDTO;
+import com.chanzo.authenticationservice.dto.LoginResponseDTO;
 import com.chanzo.authenticationservice.dto.UserRequestDTO;
 import com.chanzo.authenticationservice.dto.UserResponseDTO;
+import com.chanzo.authenticationservice.service.AuthService;
 import com.chanzo.authenticationservice.service.UserInfoService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {
 
-    private final UserInfoService userService;
+    private final UserInfoService userInfoService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> registerUser(@RequestBody UserRequestDTO userRequestDTO){
-        UserResponseDTO userResponseDTO = userService.registerUser(userRequestDTO);
+        UserResponseDTO userResponseDTO = userInfoService.registerUser(userRequestDTO);
         return ResponseEntity.ok(userResponseDTO);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody LoginRequestDTO loginRequestDTO){
+        Optional<String> tokenOptional = authService.authenticate(loginRequestDTO);
+        if (tokenOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String token = tokenOptional.get();
+        return ResponseEntity.ok().body(new LoginResponseDTO(token));
+    }
+
+    @GetMapping("/validate")
+    public ResponseEntity<Void> validateToken(@RequestHeader("Authorization") String authHeader ) {
+
+        //authorisation:bearer <token>
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+       return authService.validateToken(authHeader.substring(7))
+               ? ResponseEntity.ok().build()
+               : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 

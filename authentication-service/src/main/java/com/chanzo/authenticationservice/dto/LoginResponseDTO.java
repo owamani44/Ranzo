@@ -1,5 +1,8 @@
 package com.chanzo.authenticationservice.dto;
 
+import lombok.Getter;
+
+@Getter
 public class LoginResponseDTO {
     private final String token;
 
@@ -7,7 +10,4 @@ public class LoginResponseDTO {
         this.token = token;
     }
 
-    public String getToken() {
-        return token;
-    }
 }

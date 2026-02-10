@@ -2,7 +2,11 @@ package com.chanzo.authenticationservice.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class LoginRequestDTO {
     @NotBlank
     @Size(min=15, max=27, message = "Username must be be valid ")

@@ -29,7 +29,7 @@ public class SecurityConfig {
 
         // authorize requests: allow registration endpoints, require auth for others
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/users/register", "/users").permitAll()
+                .requestMatchers("/users/register", "/users/login", "/users","/users/validate").permitAll()
 //                .requestMatchers("/login").authenticated()
 //                .anyRequest().authenticated()
         );
