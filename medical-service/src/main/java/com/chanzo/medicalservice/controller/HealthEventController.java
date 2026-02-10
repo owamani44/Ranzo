@@ -42,5 +42,10 @@ public class HealthEventController {
         return ResponseEntity.ok().body(healthEventResponseDTO);
     }
 
+    @DeleteMapping("/{eventID}")
+    public ResponseEntity<HealthEventResponseDTO> deleteEventById(@PathVariable Integer eventID){
+        healthEventService.deleteEvent(eventID);
+        return ResponseEntity.noContent().build();
+    }
 
 }

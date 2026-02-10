@@ -21,6 +21,7 @@ public class WeightMapper {
         Weight weight = new Weight();
         weight.setTagNumber(weightRequestDTO.getTagNumber());
         weight.setWeight(weightRequestDTO.getWeight());
+        weightRequestDTO.setMedicalFollowUpRequired(false);
 
         return weight;
     }

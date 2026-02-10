@@ -1,5 +1,6 @@
 package com.chanzo.medicalservice.dtos;
 
+import com.chanzo.medicalservice.model.MedicationStatus;
 import com.chanzo.medicalservice.model.MedicationType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -11,6 +12,8 @@ import java.time.LocalDateTime;
 public class MedicationRequestDTO {
     @NotBlank
     private MedicationType type;
+    @NotBlank
+    private MedicationStatus status;
     @NotBlank
     private String tagNumber;
     @NotBlank

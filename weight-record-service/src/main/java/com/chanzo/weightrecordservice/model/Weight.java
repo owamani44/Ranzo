@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.processing.Generated;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,18 +23,18 @@ public class Weight {
     @Column(name="medical_follow_up_required")
     private boolean medicalFollowUpRequired;
     @Column(name="first_measured_on")
-    private LocalDateTime firstMeasuredOn;
+    private LocalDate firstMeasuredOn;
     @Column(name="last_measured_on")
-    private LocalDateTime lastMeasuredOn;
+    private LocalDate lastMeasuredOn;
 
     @PrePersist
     public void onCreate(){
-        this.firstMeasuredOn = LocalDateTime.now();
-        this.lastMeasuredOn=LocalDateTime.now();
+        this.firstMeasuredOn = LocalDate.now();
+        this.lastMeasuredOn=LocalDate.now();
     }
 
     @PreUpdate
     public void onUpdate(){
-        this.lastMeasuredOn=LocalDateTime.now();
+        this.lastMeasuredOn=LocalDate.now();
     }
 }

@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,16 @@ import java.util.Optional;
 public class WeightService {
 
     private  final WeightRepo weightRepo;
+
+    public Long AverageDailyGain(Long incomingWeight, Long previousWeight, Weight existingRecord){
+
+        Long weightDifference = incomingWeight - previousWeight;
+        Long  daysBetween = java.time.temporal.ChronoUnit.DAYS.between(existingRecord.getLastMeasuredOn(), java.time.LocalDate.now());
+
+        Long adg = (Long) (weightDifference / daysBetween);
+
+        return adg;
+    }
 
     public WeightResponseDTO recordWeight(WeightRequestDTO weightRequestDTO){
         if(weightRepo.existsByTagNumber(weightRequestDTO.getTagNumber()))

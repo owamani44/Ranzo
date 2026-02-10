@@ -15,6 +15,12 @@ public class MedicationController {
 
     private final MedicationService medicationService;
 
+    @GetMapping("/sick-count")
+    public ResponseEntity<Integer> getSickAnimalsCount(){
+        int count = medicationService.getSickAnimalsCount();
+        return ResponseEntity.ok().body(count);
+    }
+
     @PostMapping
     public ResponseEntity<MedicationResponseDTO> createMedication(@RequestBody MedicationRequestDTO
                                                                               medicalRequestDTO){

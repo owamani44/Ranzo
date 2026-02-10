@@ -3,6 +3,7 @@ package com.chanzo.weightrecordservice.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Getter
 @Setter
@@ -11,6 +12,6 @@ public class WeightResponseDTO {
     private String tagNumber;
     private Long weight;
     private boolean medicalFollowUpRequired;
-    private LocalDateTime firstMeasuredOn;
-    private LocalDateTime lastMeasuredOn;
+    private LocalDate firstMeasuredOn;
+    private LocalDate lastMeasuredOn;
 }

@@ -5,6 +5,7 @@ import com.chanzo.medicalservice.dtos.MedicationRequestDTO;
 import com.chanzo.medicalservice.exceptions.AnimalNotFound;
 import com.chanzo.medicalservice.mapper.MedicationMapper;
 import com.chanzo.medicalservice.model.Medication;
+import com.chanzo.medicalservice.model.MedicationStatus;
 import com.chanzo.medicalservice.repo.MedicationRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class MedicationService {
     private final MedicationRepo medicationRepo;
+
+    public int getSickAnimalsCount(){
+        return medicationRepo.countByStatus(MedicationStatus.ACTIVE);
+    }
 
     public MedicationResponseDTO createAction(MedicationRequestDTO medicationRequestDTO) {
         Medication newAction= medicationRepo.save
