@@ -22,6 +22,8 @@ public class Weight {
     private Long weight;
     @Column(name="medical_follow_up_required")
     private boolean medicalFollowUpRequired;
+    @Column(name="average_daily_gain")
+    private  Long averageDailyGain;
     @Column(name="first_measured_on")
     private LocalDate firstMeasuredOn;
     @Column(name="last_measured_on")

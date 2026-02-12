@@ -11,9 +11,12 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
+
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @Transactional
@@ -22,14 +25,26 @@ public class WeightService {
 
     private  final WeightRepo weightRepo;
 
-    public Long AverageDailyGain(Long incomingWeight, Long previousWeight, Weight existingRecord){
+    public Long AverageDailyGain(Long incomingWeight, Long previousWeight, Weight existingRecord) {
 
-        Long weightDifference = incomingWeight - previousWeight;
-        Long  daysBetween = java.time.temporal.ChronoUnit.DAYS.between(existingRecord.getLastMeasuredOn(), java.time.LocalDate.now());
+        if (incomingWeight == null || previousWeight == null) {
+            return 0L;
+        }
 
-        Long adg = (Long) (weightDifference / daysBetween);
+        LocalDate lastMeasuredOn = existingRecord.getLastMeasuredOn();
+        if (lastMeasuredOn == null) {
+            return 0L;
+        }
 
-        return adg;
+        long daysBetween = ChronoUnit.DAYS.between(lastMeasuredOn, LocalDate.now());
+        if (daysBetween <= 0) {
+            return 0L;
+        }
+
+        long weightDifference = incomingWeight - previousWeight;
+        System.out.println("Weight Difference: " + weightDifference);
+        System.out.println("Days Between: " + daysBetween);
+        return weightDifference / daysBetween;
     }
 
     public WeightResponseDTO recordWeight(WeightRequestDTO weightRequestDTO){
@@ -63,6 +78,8 @@ public class WeightService {
            newWeight.setMedicalFollowUpRequired(true);
        }
        newWeight.setWeight(incomingWeight);
+       long adg = AverageDailyGain(incomingWeight, previousWeight, newWeight);
+        newWeight.setAverageDailyGain(adg);
        Weight updatedWeight = weightRepo.save(newWeight);
        return WeightMapper.toDTO(updatedWeight);
     }

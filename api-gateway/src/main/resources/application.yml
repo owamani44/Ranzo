@@ -1,0 +1,40 @@
+server:
+  port: 8085
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service-route
+          uri: http://authentication-service:8085
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
+
+        - id: animal-registry-service-route
+          uri: http://animal-registry-service:8081
+          predicates:
+            - Path=/api/animals/**
+          filters:
+            - StripPrefix=1
+
+        - id: medical-service-route
+          uri: http://health-events:8082
+          predicates:
+            - Path=/api/health-events/**
+          filters:
+            - StripPrefix=1
+        - id: medical-service-route
+          uri: http://medication:8082
+          predicates:
+            - Path=/api/medication/**
+          filters:
+            - StripPrefix=1
+
+        - id: weight-service-route
+          uri: http://weight-service:8083
+          predicates:
+            - Path=/api/weights/**
+          filters:
+            - StripPrefix=1

@@ -10,6 +10,7 @@ public class WeightMapper {
         dto.setWeightId(weight.getWeightId().longValue());
         dto.setTagNumber(weight.getTagNumber());
         dto.setWeight(weight.getWeight());
+        dto.setAverageDailyGain(weight.getAverageDailyGain());
         dto.setMedicalFollowUpRequired(weight.isMedicalFollowUpRequired());
         dto.setFirstMeasuredOn(weight.getFirstMeasuredOn());
         dto.setLastMeasuredOn(weight.getLastMeasuredOn());
