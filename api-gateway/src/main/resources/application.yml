@@ -1,40 +1,45 @@
 server:
   port: 8085
 
+authentication:
+  service:
+    url: ${AUTH_SERVICE_URL:http://localhost:8084}
+
 spring:
   cloud:
     gateway:
-      routes:
-        - id: user-service-route
-          uri: http://authentication-service:8085
-          predicates:
-            - Path=/api/users/**
-          filters:
-            - StripPrefix=1
+      server:
+        webflux:
+          routes:
+            - id: user-service-route
+              uri: ${AUTH_SERVICE_URI:http://localhost:8084}
+              predicates:
+                - Path=/auth/**
 
-        - id: animal-registry-service-route
-          uri: http://animal-registry-service:8081
-          predicates:
-            - Path=/api/animals/**
-          filters:
-            - StripPrefix=1
+            - id: animal-registry-service-route
+              uri: ${ANIMAL_SERVICE_URI:http://localhost:8081}
+              predicates:
+                - Path=/api/animals/**
+              filters:
+                - StripPrefix=1
+                - JwtValidation
 
-        - id: medical-service-route
-          uri: http://health-events:8082
-          predicates:
-            - Path=/api/health-events/**
-          filters:
-            - StripPrefix=1
-        - id: medical-service-route
-          uri: http://medication:8082
-          predicates:
-            - Path=/api/medication/**
-          filters:
-            - StripPrefix=1
+            - id: medical-service-route
+              uri: ${MEDICAL_SERVICE_URI:http://localhost:8082}
+              predicates:
+                - Path=/api/health-events/**
+              filters:
+                - StripPrefix=1
+            - id: medication-service-route
+              uri: ${MEDICATION_SERVICE_URI:http://localhost:8082}
+              predicates:
+                - Path=/api/medication/**
+              filters:
+                - StripPrefix=1
 
-        - id: weight-service-route
-          uri: http://weight-service:8083
-          predicates:
-            - Path=/api/weights/**
-          filters:
-            - StripPrefix=1
+            - id: weight-service-route
+              uri: ${WEIGHT_SERVICE_URI:http://localhost:8083}
+              predicates:
+                - Path=/api/weights/**
+              filters:
+                - StripPrefix=1

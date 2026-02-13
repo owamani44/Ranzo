@@ -24,18 +24,15 @@ public class SecurityConfig {
 
      @Bean
      public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // disable CSRF for simplicity (adjust for production)
+        // disable CSRF for simplicity adjust for production
         http.csrf(AbstractHttpConfigurer::disable);
 
-        // authorize requests: allow registration endpoints, require auth for others
+        // allow auth endpoints; require authentication elsewhere
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/users/register", "/users/login", "/users","/users/validate").permitAll()
-//                .requestMatchers("/login").authenticated()
-//                .anyRequest().authenticated()
+                .requestMatchers("/auth/**").permitAll()
+                .anyRequest().authenticated()
         );
-
-
-         return http.build();
+        return http.build();
      }
 
      // Use the injected UserService (which should implement UserDetailsService) for authentication

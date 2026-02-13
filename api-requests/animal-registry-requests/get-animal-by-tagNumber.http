@@ -1,6 +1,7 @@
 ### GET request to example server
-GET http://localhost:8080/animals
+GET http://localhost:8085/api/animals
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 
 
