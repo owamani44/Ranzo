@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/weight-record-service/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/authentication-service/pom.xml" />
+        <option value="$PROJECT_DIR$/integration-tests/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -18,7 +19,7 @@
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="25" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

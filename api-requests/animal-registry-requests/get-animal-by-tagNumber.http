@@ -1,5 +1,5 @@
 ### GET request to example server
-GET http://localhost:8085/api/animals
+GET http://localhost:8085/api/animals/by-tag/KO2-015
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

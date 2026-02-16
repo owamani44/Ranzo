@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/health-events")
+@RequestMapping("/health-events")
 public class HealthEventController {
 
     private final HealthEventService healthEventService;
