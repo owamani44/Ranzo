@@ -1,3 +1,5 @@
-### GET request to example server
-GET http://localhost:8082/weight/all-weight-records
+### GET all weight records
+GET http://localhost:8085/api/weight/all-weight-records
+Content-Type: application/json
+Authorization: Bearer {{token}}
 ###

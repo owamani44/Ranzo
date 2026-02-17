@@ -30,16 +30,19 @@ spring:
                 - Path=/api/health-events/**
               filters:
                 - StripPrefix=1
+                - JwtValidation
             - id: medication-service-route
               uri: ${MEDICATION_SERVICE_URI:http://localhost:8082}
               predicates:
                 - Path=/api/medication/**
               filters:
                 - StripPrefix=1
+                - JwtValidation
 
             - id: weight-service-route
               uri: ${WEIGHT_SERVICE_URI:http://localhost:8083}
               predicates:
-                - Path=/api/weights/**
+                - Path=/api/weight/**
               filters:
                 - StripPrefix=1
+                - JwtValidation

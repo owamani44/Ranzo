@@ -1,6 +1,7 @@
-### GET request to example server
+### update animal status
 PATCH http://localhost:8080/animals/9
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "status": "LOST",

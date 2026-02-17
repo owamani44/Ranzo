@@ -1,4 +1,4 @@
-### GET request to example server
+### get animal by tag number
 GET http://localhost:8085/api/animals/by-tag/KO2-015
 Content-Type: application/json
 Authorization: Bearer {{token}}

@@ -1,5 +1,6 @@
-### GET request to example server
-GET http://localhost:8082/weight/by-tag/K01-001
+### GET weight record by tag-number
+GET http://localhost:8085/api/weight/by-tag/K01-001
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ###

@@ -3,8 +3,9 @@ package com.chanzo.medicalservice.controller;
 import com.chanzo.medicalservice.dtos.MedicationRequestDTO;
 import com.chanzo.medicalservice.dtos.MedicationResponseDTO;
 import com.chanzo.medicalservice.service.MedicationService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,14 @@ public class MedicationController {
 
     private final MedicationService medicationService;
 
+    @Operation(summary="Get the count of sick animals")
     @GetMapping("/sick-count")
     public ResponseEntity<Integer> getSickAnimalsCount(){
         int count = medicationService.getSickAnimalsCount();
         return ResponseEntity.ok().body(count);
     }
 
+    @Operation(summary = "Create a new medication record")
     @PostMapping
     public ResponseEntity<MedicationResponseDTO> createMedication(@RequestBody MedicationRequestDTO
                                                                               medicalRequestDTO){
@@ -28,17 +31,21 @@ public class MedicationController {
         return ResponseEntity.ok().body(dto);
     }
 
+    @Operation(summary = "Get a medication record by ID ")
     @GetMapping("/{medicalID}")
-    public ResponseEntity<MedicationResponseDTO> getMedicationById(@PathVariable Integer medicalID){
+    public ResponseEntity<MedicationResponseDTO>  MedicationById(@PathVariable Integer medicalID){
         MedicationResponseDTO dto1 = medicationService.getActionById(medicalID);
         return ResponseEntity.ok().body(dto1);
     }
+
+    @Operation(summary = "Get medication record by tag number")
     @GetMapping("/by-tag/{tagNumber}")
     public ResponseEntity<MedicationResponseDTO> getMedicationByTagNumber(@PathVariable String tagNumber){
         MedicationResponseDTO dto2 = medicationService.getMedicationByTagNumber(tagNumber);
         return ResponseEntity.ok().body(dto2);
     }
 
+    @Operation(summary = "Delete a medication record")
     @DeleteMapping("/{medicalID}")
     public ResponseEntity<MedicationResponseDTO> deleteMedicationById(@PathVariable Integer medicalID){
         medicationService.deleteAction(medicalID);

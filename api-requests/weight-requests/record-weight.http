@@ -1,6 +1,7 @@
-### GET request to example server
+### create new weight record
 POST http://localhost:8082/weight
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "tagNumber": "K01-001",

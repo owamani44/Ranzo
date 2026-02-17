@@ -1,6 +1,7 @@
-### GET request to example server
-POST http://localhost:8080/health-events
+### record a health event for a cow
+POST http://localhost:8085/api/health-events
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "tagNumber": "K01-001",

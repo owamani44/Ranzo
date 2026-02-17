@@ -1,7 +1,8 @@
-### GET request to example server
+### record medication details for animal
 
-POST http://localhost:8081/medication
+POST http://localhost:8085/api/medication
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "tagNumber": "K01-001",

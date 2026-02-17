@@ -6,6 +6,7 @@ import com.chanzo.authenticationservice.dto.UserRequestDTO;
 import com.chanzo.authenticationservice.dto.UserResponseDTO;
 import com.chanzo.authenticationservice.service.AuthService;
 import com.chanzo.authenticationservice.service.UserInfoService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,15 @@ public class UserController {
     private final UserInfoService userInfoService;
     private final AuthService authService;
 
+    @Operation(summary="Register a new user",
+            description="Create a new user account with the provided details.")
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> registerUser(@RequestBody UserRequestDTO userRequestDTO){
         UserResponseDTO userResponseDTO = userInfoService.registerUser(userRequestDTO);
         return ResponseEntity.ok(userResponseDTO);
     }
-
+    @Operation(summary="Login user",
+            description="Authenticate user and return a JWT token if credentials are valid.")
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody LoginRequestDTO loginRequestDTO){
         Optional<String> tokenOptional = authService.authenticate(loginRequestDTO);
@@ -37,6 +41,8 @@ public class UserController {
         return ResponseEntity.ok().body(new LoginResponseDTO(token));
     }
 
+    @Operation(summary="Validate JWT token",
+            description="Validate the provided JWT token and return 200 OK if valid, or 401 Unauthorized if invalid.")
     @GetMapping("/validate")
     public ResponseEntity<Void> validateToken(@RequestHeader("Authorization") String authHeader ) {
 

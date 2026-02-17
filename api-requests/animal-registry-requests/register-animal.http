@@ -1,6 +1,7 @@
-### GET request to example server
+### register a new animal
 POST http://localhost:8080/animals
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "tagNumber": "KO2-015",

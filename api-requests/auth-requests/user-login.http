@@ -1,4 +1,4 @@
-### GET request to example server
+### User Login
 POST http://localhost:8085/auth/login
 Content-Type: application/json
 

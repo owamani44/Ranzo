@@ -1,5 +1,6 @@
-### GET request to example server
-GET http://localhost:8081/medication/by-tag/K01-001
+### GET medication records
+GET http://localhost:8085/api/medication
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ###

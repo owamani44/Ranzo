@@ -3,11 +3,10 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class AuthIntegrationTests {
+public class AnimalRegistryIntegrationTests {
     @BeforeAll
     static void setup() {
         // Set up any necessary configurations or test data here
@@ -22,34 +21,23 @@ public class AuthIntegrationTests {
                       "password": "Password1234"
              }
           """;
-        Response response = given()
+       String token = given()
                 .contentType("application/json")
                 .body(loginPayload)
                 .when()
                 .post("auth/login")
                 .then()
                 .statusCode(200)
-                .body("token",notNullValue())
                 .extract()
-                .response();
-        System.out.println("Generated token: "+ response.jsonPath().getString("token"));
-    }
+                .jsonPath()
+                .get("token");
 
-        @Test
-        public void  shouldReturnUnauthorizedOnInvalidLogin(){
-        String loginPayload= """
-            {
-                      "username": "wronguser",
-                      "password": "WrongPassword"
-             }
-          """;
-        given()
-                .contentType("application/json")
-                .body(loginPayload)
-                .when()
-                .post("auth/login")
-                .then()
-                .statusCode(401)
-                .extract();
+      given()
+               .header("Authorization", "Bearer " + token)
+               .when()
+               .get("/api/animals")
+               .then()
+               .statusCode(200)
+               .body("animals", notNullValue());
     }
 }

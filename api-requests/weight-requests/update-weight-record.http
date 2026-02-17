@@ -1,6 +1,7 @@
-
-PATCH http://localhost:8082/weight/2
+###  Update a weight record
+PATCH http://localhost:8085/api/weight/2
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "weight": 209,
