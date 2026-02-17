@@ -218,5 +218,4 @@ Repeat for each service directory.
 
 ## Known Issues / Notes
 
-- Several files in `api-requests/` use outdated ports/paths; prefer the routes documented in this README and service configs.
 - Default credentials and JWT secret in `application.properties` are development-only values and should be externalized for production.
