@@ -60,7 +60,7 @@ public class AnimalService {
                 ()-> new AnimalNotFound("Animal not found" + id));
 
             newAnimal.setStatus(animalRequestDTO.getStatus());
-            newAnimal.setUpdatedOn(animalRequestDTO.getUpdatedOn());
+
 
            Animal updatedAnimal = animalRepo.save(newAnimal);
 

@@ -1,7 +1,7 @@
 ### get animal by tag number
-GET http://localhost:8085/api/animals/by-tag/KO2-015
+GET http://localhost:8081/animals/by-tag/KO2-015
 Content-Type: application/json
-Authorization: Bearer {{token}}
+#Authorization: Bearer {{token}}
 
 
 

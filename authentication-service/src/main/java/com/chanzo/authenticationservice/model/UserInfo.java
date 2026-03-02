@@ -28,8 +28,8 @@ public class UserInfo {
 
     @NotNull
     private String password;
-
-    private String roles;
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
 
 

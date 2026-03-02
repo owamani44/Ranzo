@@ -39,8 +39,4 @@ public class AnimalRequestDTO {
 
     @NotBlank
     private String kraalAssignment;
-
-    private LocalDateTime registeredOn=LocalDateTime.now();
-
-    private LocalDateTime updatedOn = LocalDateTime.now();
 }

@@ -1,5 +1,6 @@
 package com.chanzo.authenticationservice.dto;
 
+import com.chanzo.authenticationservice.model.Roles;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,5 +13,6 @@ public class UserResponseDTO {
     private String firstName;
     private String lastName;
     private String username;
+    private Roles role;
 
 }

@@ -36,8 +36,7 @@ public static Animal toModel(AnimalRequestDTO animalRequestDTO){
         animal.setGender(animalRequestDTO.getGender());
         animal.setKraalAssignment(animalRequestDTO.getKraalAssignment());
         animal.setBirthDate(LocalDate.parse(animalRequestDTO.getBirthdate()));
-        animal.setRegisteredOn(animalRequestDTO.getRegisteredOn());
-        animal.setUpdatedOn(animalRequestDTO.getUpdatedOn());
+
 
         return animal;
 }

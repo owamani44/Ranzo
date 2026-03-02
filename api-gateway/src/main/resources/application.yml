@@ -22,7 +22,7 @@ spring:
                 - Path=/api/animals/**
               filters:
                 - StripPrefix=1
-                - JwtValidation
+#                - JwtValidation
 
             - id: medical-service-route
               uri: ${MEDICAL_SERVICE_URI:http://localhost:8082}

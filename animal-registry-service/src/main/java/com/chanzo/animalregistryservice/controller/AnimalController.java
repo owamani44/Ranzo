@@ -15,7 +15,7 @@ import java.util.List;
 /**
 Author:Solomon Owamani
 **/
-
+@CrossOrigin("http://localhost:5173")
 @RestController
 @RequestMapping("/animals")
 public class AnimalController {
