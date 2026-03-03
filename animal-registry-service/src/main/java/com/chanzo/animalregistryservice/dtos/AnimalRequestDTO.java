@@ -3,6 +3,7 @@ package com.chanzo.animalregistryservice.dtos;
 import com.chanzo.animalregistryservice.model.AnimalStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,9 +30,9 @@ public class AnimalRequestDTO {
     @Size(min =5, max=12 , message="Specify the type of breed for the listed animal")
     private String breed;
 
-    @NotBlank
-    @Size(message = "Birth date of the animal should be included")
-    private String birthdate;
+    @NotNull
+    @PastOrPresent(message = "Birth date of the animal should be included")
+    private LocalDate birthDate;
 
     @NotBlank
     @Size(min = 2, max = 12, message = "Animal gender must be specified")

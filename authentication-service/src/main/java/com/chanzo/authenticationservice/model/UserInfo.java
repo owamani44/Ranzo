@@ -29,10 +29,7 @@ public class UserInfo {
     @NotNull
     private String password;
     @Enumerated(EnumType.STRING)
-    private Roles role;
-
-
-
+    private Roles roles;
 
 
 }

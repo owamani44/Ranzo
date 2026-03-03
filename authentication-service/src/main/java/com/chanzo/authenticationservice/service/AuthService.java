@@ -24,7 +24,7 @@ public class AuthService {
                 (loginRequestDTO.getUsername())
         .filter(u->passwordEncoder.matches(loginRequestDTO.getPassword(),
                 u.getPassword()))
-                .map(u->jwtUtil.generateToken(u.getUsername(),u.getRoles()));
+                .map(u->jwtUtil.generateToken(u.getUsername(), String.valueOf(u.getRoles())));
 
         return token;
     }

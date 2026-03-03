@@ -10,6 +10,10 @@ public enum Roles {
     VET("Vet"),
     FARM_OPERATOR("FARM OPERATOR");
 
-        private final String role;
+        private final String roles;
 
+
+    public String[] split(String s) {
+        return null;
+    }
 }

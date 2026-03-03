@@ -1,8 +1,6 @@
 package com.chanzo.authenticationservice.dto;
 
 import com.chanzo.authenticationservice.model.Roles;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -26,5 +24,5 @@ public class UserRequestDTO {
     private String password;
 
     @NotBlank
-    private Roles role;
+    private Roles roles;
 }
