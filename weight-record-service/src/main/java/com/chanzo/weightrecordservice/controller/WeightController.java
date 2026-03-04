@@ -18,6 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 public class WeightController {
     private final WeightService weightService;
+    @GetMapping("/mean-weight")
+    public ResponseEntity<Double> getAverageWeight(){
+        double meanWeight = weightService.averageWeight();
+        return ResponseEntity.ok().body(meanWeight);
+    }
+
     @Operation(summary = "Record a new weight entry for an animal")
     @PostMapping
     public ResponseEntity<WeightResponseDTO> recordWeight

@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 Author:Solomon Owamani
@@ -23,6 +24,11 @@ public class AnimalController {
 
     public AnimalController(AnimalService animalService){
         this.animalService= animalService;
+    }
+    @GetMapping("/ranch-stats")
+    public ResponseEntity<Map<String,Long>> getRanchStats(){
+        Map<String,Long> stats = animalService.getRanchStats();
+        return ResponseEntity.ok().body(stats);
     }
 
                 /**GET ALL ANIMALS ENDPOINT**/

@@ -11,8 +11,8 @@ import lombok.Getter;
 public enum MedicationType {
     MEDICATION("Medication"),
     PROCEDURE("Procedure"),
-    VACCINATION("Vaccination"),
-    OTHER("Other");
+    VACCINATION("Vaccination");
+
 
     private final String displayMedicationType;
 }

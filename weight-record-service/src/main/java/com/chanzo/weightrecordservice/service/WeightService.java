@@ -25,26 +25,31 @@ public class WeightService {
 
     private  final WeightRepo weightRepo;
 
-    public Long AverageDailyGain(Long incomingWeight, Long previousWeight, Weight existingRecord) {
+    public Double AverageDailyGain(Double incomingWeight, Double previousWeight, Weight existingRecord) {
 
         if (incomingWeight == null || previousWeight == null) {
-            return 0L;
+            return null;
         }
 
         LocalDate lastMeasuredOn = existingRecord.getLastMeasuredOn();
         if (lastMeasuredOn == null) {
-            return 0L;
+            return null;
         }
 
         long daysBetween = ChronoUnit.DAYS.between(lastMeasuredOn, LocalDate.now());
         if (daysBetween <= 0) {
-            return 0L;
+            return null;
         }
 
-        long weightDifference = incomingWeight - previousWeight;
+        double weightDifference = incomingWeight - previousWeight;
         System.out.println("Weight Difference: " + weightDifference);
         System.out.println("Days Between: " + daysBetween);
         return weightDifference / daysBetween;
+    }
+    public Double averageWeight(){
+        double totalWeight = weightRepo.getTotalWeight();
+        long noOfAnimals = weightRepo.count();
+        return  totalWeight / noOfAnimals;
     }
 
     public WeightResponseDTO recordWeight(WeightRequestDTO weightRequestDTO){
@@ -72,13 +77,13 @@ public class WeightService {
        Weight newWeight = weightRepo.findById(weightId).
                orElseThrow(()-> new AnimalNotFound("Animal not found: "+ weightId));
 
-       Long previousWeight = newWeight.getWeight();
-       Long incomingWeight = weightRequestDTO.getWeight();
-       if (previousWeight != null && incomingWeight != null && incomingWeight < previousWeight) {
+       double previousWeight = newWeight.getWeight();
+       double incomingWeight = weightRequestDTO.getWeight();
+       if (previousWeight != 0.0 && incomingWeight != 0.0 && incomingWeight < previousWeight) {
            newWeight.setMedicalFollowUpRequired(true);
        }
        newWeight.setWeight(incomingWeight);
-       long adg = AverageDailyGain(incomingWeight, previousWeight, newWeight);
+       double adg = AverageDailyGain(incomingWeight, previousWeight, newWeight);
         newWeight.setAverageDailyGain(adg);
        Weight updatedWeight = weightRepo.save(newWeight);
        return WeightMapper.toDTO(updatedWeight);

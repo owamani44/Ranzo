@@ -21,13 +21,13 @@ public class Weight {
     @Column(name="tag_number")
     private String tagNumber;
 
-    private Long weight;
+    private Double weight;
 
     @Column(name="medical_follow_up_required")
     private boolean medicalFollowUpRequired;
 
     @Column(name="average_daily_gain")
-    private  Long averageDailyGain;
+    private Double averageDailyGain;
 
     @Column(name="first_measured_on")
     private LocalDate firstMeasuredOn;

@@ -14,7 +14,7 @@ public class WeightRequestDTO {
     @NotNull
     @Min(1)
     @Max(10000)
-    private Long weight;
+    private Double weight;
 
     private Boolean medicalFollowUpRequired;
 

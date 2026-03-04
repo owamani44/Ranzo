@@ -1,6 +1,7 @@
 package com.chanzo.animalregistryservice.repo;
 
 import com.chanzo.animalregistryservice.model.Animal;
+import com.chanzo.animalregistryservice.model.AnimalStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,6 @@ public interface AnimalRepo extends JpaRepository<Animal,Integer> {
 
 
     Optional<Animal> findByTagNumber(String tagNumber);
+
+    Long countAnimalByStatus(AnimalStatus animalStatus);
 }

@@ -7,12 +7,17 @@ import com.chanzo.animalregistryservice.exceptions.TagNumberAlreadyExists;
 import com.chanzo.animalregistryservice.mapper.AnimalMapper;
 import com.chanzo.animalregistryservice.model.Animal;
 import com.chanzo.animalregistryservice.model.AnimalOutbox;
+import com.chanzo.animalregistryservice.model.AnimalStatus;
 import com.chanzo.animalregistryservice.repo.AnimalOutboxRepo;
 import com.chanzo.animalregistryservice.repo.AnimalRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.chanzo.animalregistryservice.model.AnimalStatus.ALIVE;
 
 @Service
 public class AnimalService {
@@ -24,6 +29,15 @@ public class AnimalService {
     public AnimalService(AnimalRepo animalRepo, AnimalOutboxRepo animalOutboxRepo) {
         this.animalRepo = animalRepo;
         this.animalOutboxRepo = animalOutboxRepo;
+    }
+    public Map<String, Long> getRanchStats(){
+        Map<String,Long> stats =new HashMap<>();
+        stats.put("ALIVE",animalRepo.countAnimalByStatus(AnimalStatus.ALIVE));
+        stats.put("LOST",animalRepo.countAnimalByStatus(AnimalStatus.LOST));
+        stats.put("DEAD",animalRepo.countAnimalByStatus(AnimalStatus.DEAD));
+        stats.put("SOLD",animalRepo.countAnimalByStatus(AnimalStatus.SOLD));
+
+        return stats;
     }
                           /**GET ALL ANIMALS**/
     public List<AnimalResponseDTO> getAnimals(){
