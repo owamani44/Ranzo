@@ -22,7 +22,7 @@ public class HealthEventMapper {
         healthEvent1.setEventType(healthEventRequestDTO.getEventType());
         healthEvent1.setSymptoms(healthEventRequestDTO.getSymptoms());
         healthEvent1.setRecordedBy(healthEventRequestDTO.getRecordedBy());
-        healthEvent1.setObservedDate(healthEventRequestDTO.getObservedDate());
+
 
         return healthEvent1;
     }

@@ -27,7 +27,7 @@ public class MedicationMapper {
         action.setDrugName(medicationRequestDTO.getDrugName());
         action.setDosage(medicationRequestDTO.getDosage());
         action.setAdministeredBy(medicationRequestDTO.getAdministeredBy());
-        action.setAdministeredAt(medicationRequestDTO.getAdministeredAt());
+
 
         return action;
     }

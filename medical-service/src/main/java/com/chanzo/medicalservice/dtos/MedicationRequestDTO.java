@@ -23,5 +23,4 @@ public class MedicationRequestDTO {
     @NotBlank
     private String administeredBy;
 
-    private LocalDateTime administeredAt;
 }

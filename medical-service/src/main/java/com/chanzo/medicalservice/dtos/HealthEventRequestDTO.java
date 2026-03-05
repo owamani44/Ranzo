@@ -21,6 +21,4 @@ public class HealthEventRequestDTO {
 
     @NotNull
     private String recordedBy;
-
-    private LocalDateTime observedDate;
 }
