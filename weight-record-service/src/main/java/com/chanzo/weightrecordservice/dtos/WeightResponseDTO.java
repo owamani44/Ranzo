@@ -11,7 +11,7 @@ public class WeightResponseDTO {
     private Long weightId;
     private String tagNumber;
     private Double weight;
-    private  Long averageDailyGain;
+    private  Double averageDailyGain;
     private boolean medicalFollowUpRequired;
     private LocalDate firstMeasuredOn;
     private LocalDate lastMeasuredOn;
