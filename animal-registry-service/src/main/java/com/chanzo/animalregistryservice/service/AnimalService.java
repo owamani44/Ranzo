@@ -39,6 +39,10 @@ public class AnimalService {
 
         return stats;
     }
+
+    public List<Animal> searchAnimals(String keyword){
+        return animalRepo.searchAnimals(keyword);
+    }
                           /**GET ALL ANIMALS**/
     public List<AnimalResponseDTO> getAnimals(){
         List<Animal> animals = animalRepo.findAll();

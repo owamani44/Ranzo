@@ -2,6 +2,7 @@ package com.chanzo.animalregistryservice.controller;
 
 import com.chanzo.animalregistryservice.dtos.AnimalRequestDTO;
 import com.chanzo.animalregistryservice.dtos.AnimalResponseDTO;
+import com.chanzo.animalregistryservice.model.Animal;
 import com.chanzo.animalregistryservice.service.AnimalService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -26,9 +27,15 @@ public class AnimalController {
         this.animalService= animalService;
     }
     @GetMapping("/ranch-stats")
-    public ResponseEntity<Map<String,Long>> getRanchStats(){
-        Map<String,Long> stats = animalService.getRanchStats();
+    public ResponseEntity<Map<String,Long>> getRanchStats() {
+        Map<String, Long> stats = animalService.getRanchStats();
         return ResponseEntity.ok().body(stats);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Animal>> searchAnimals(@RequestParam String keyword){
+        List<Animal> animals= animalService.searchAnimals(keyword);
+        return ResponseEntity.ok().body(animals);
     }
 
                 /**GET ALL ANIMALS ENDPOINT**/
