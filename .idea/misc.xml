@@ -11,11 +11,14 @@
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/authentication-service/pom.xml" />
         <option value="$PROJECT_DIR$/integration-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/ranzo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/animal-mgt-service/pom.xml" />
+        <option value="$PROJECT_DIR$/animal-registry-service/pom.xml" />
+        <option value="$PROJECT_DIR$/medical-service/pom.xml" />
       </set>
     </option>
   </component>
