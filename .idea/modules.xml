@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Ranzo.iml" filepath="$PROJECT_DIR$/Ranzo.iml" />
       <module fileurl="file://$PROJECT_DIR$/ranzo/ranzo.iml" filepath="$PROJECT_DIR$/ranzo/ranzo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/weight-record-service/weight-record-service.iml" filepath="$PROJECT_DIR$/weight-record-service/weight-record-service.iml" />
     </modules>
   </component>
 </project>

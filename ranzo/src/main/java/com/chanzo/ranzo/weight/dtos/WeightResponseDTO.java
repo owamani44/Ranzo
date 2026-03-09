@@ -1,4 +1,4 @@
-package com.chanzo.weightrecordservice.dtos;
+package com.chanzo.ranzo.weight.dtos;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
-package com.chanzo.weightrecordservice.repo;
+package com.chanzo.ranzo.weight.repo;
 
-import com.chanzo.weightrecordservice.model.Weight;
+import com.chanzo.ranzo.weight.model.Weight;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

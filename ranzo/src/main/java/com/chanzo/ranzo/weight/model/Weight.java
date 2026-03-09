@@ -1,4 +1,4 @@
-package com.chanzo.weightrecordservice.model;
+package com.chanzo.ranzo.weight.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,12 +1,13 @@
-package com.chanzo.weightrecordservice.service;
+package com.chanzo.ranzo.weight.service;
 
-import com.chanzo.weightrecordservice.dtos.WeightRequestDTO;
-import com.chanzo.weightrecordservice.dtos.WeightResponseDTO;
-import com.chanzo.weightrecordservice.exceptions.AnimalNotFound;
-import com.chanzo.weightrecordservice.exceptions.TagNumberAlreadyExists;
-import com.chanzo.weightrecordservice.mapper.WeightMapper;
-import com.chanzo.weightrecordservice.model.Weight;
-import com.chanzo.weightrecordservice.repo.WeightRepo;
+
+import com.chanzo.ranzo.weight.dtos.WeightRequestDTO;
+import com.chanzo.ranzo.weight.dtos.WeightResponseDTO;
+import com.chanzo.ranzo.weight.exceptions.AnimalNotFound;
+import com.chanzo.ranzo.weight.exceptions.TagNumberAlreadyExists;
+import com.chanzo.ranzo.weight.mapper.WeightMapper;
+import com.chanzo.ranzo.weight.model.Weight;
+import com.chanzo.ranzo.weight.repo.WeightRepo;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

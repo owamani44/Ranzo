@@ -1,8 +1,9 @@
-package com.chanzo.weightrecordservice.mapper;
+package com.chanzo.ranzo.weight.mapper;
 
-import com.chanzo.weightrecordservice.dtos.WeightRequestDTO;
-import com.chanzo.weightrecordservice.dtos.WeightResponseDTO;
-import com.chanzo.weightrecordservice.model.Weight;
+
+import com.chanzo.ranzo.weight.dtos.WeightRequestDTO;
+import com.chanzo.ranzo.weight.dtos.WeightResponseDTO;
+import com.chanzo.ranzo.weight.model.Weight;
 
 public class WeightMapper {
     public static WeightResponseDTO toDTO(Weight weight) {

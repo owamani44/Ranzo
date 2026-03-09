@@ -1,8 +1,9 @@
-package com.chanzo.weightrecordservice.controller;
+package com.chanzo.ranzo.weight.controller;
 
-import com.chanzo.weightrecordservice.dtos.WeightRequestDTO;
-import com.chanzo.weightrecordservice.dtos.WeightResponseDTO;
-import com.chanzo.weightrecordservice.service.WeightService;
+
+import com.chanzo.ranzo.weight.dtos.WeightRequestDTO;
+import com.chanzo.ranzo.weight.dtos.WeightResponseDTO;
+import com.chanzo.ranzo.weight.service.WeightService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;

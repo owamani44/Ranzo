@@ -10,15 +10,6 @@
         <module name="api-gateway" />
         <module name="integration-tests" />
       </profile>
-      <profile name="Annotation profile for ranzo" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
-        </processorPath>
-        <module name="ranzo" />
-      </profile>
       <profile name="Annotation profile for weight-record-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -27,7 +18,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="weight-record-service" />
+        <module name="ranzo" />
         <module name="authentication-service" />
       </profile>
     </annotationProcessing>
@@ -35,6 +26,7 @@
       <module name="animal-mgt-service" target="25" />
       <module name="animal-registry-service" target="25" />
       <module name="medical-service" target="25" />
+      <module name="weight-record-service" target="25" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
