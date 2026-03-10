@@ -1,48 +1,48 @@
-server:
-  port: 8085
-
-authentication:
-  service:
-    url: ${AUTH_SERVICE_URL:http://localhost:8084}
-
-spring:
-  cloud:
-    gateway:
-      server:
-        webflux:
-          routes:
-            - id: user-service-route
-              uri: ${AUTH_SERVICE_URI:http://localhost:8084}
-              predicates:
-                - Path=/auth/**
-
-            - id: animal-registry-service-route
-              uri: ${ANIMAL_SERVICE_URI:http://localhost:8081}
-              predicates:
-                - Path=/api/animals/**
-              filters:
-                - StripPrefix=1
+#server:
+#  port: 8085
+#
+#authentication:
+#  service:
+#    url: ${AUTH_SERVICE_URL:http://localhost:8084}
+#
+#spring:
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          routes:
+#            - id: user-service-route
+#              uri: ${AUTH_SERVICE_URI:http://localhost:8084}
+#              predicates:
+#                - Path=/auth/**
+#
+#            - id: animal-registry-service-route
+#              uri: ${ANIMAL_SERVICE_URI:http://localhost:8081}
+#              predicates:
+#                - Path=/api/animals/**
+#              filters:
+#                - StripPrefix=1
+##                - JwtValidation
+#
+#            - id: medical-service-route
+#              uri: ${MEDICAL_SERVICE_URI:http://localhost:8082}
+#              predicates:
+#                - Path=/api/health-events/**
+#              filters:
+#                - StripPrefix=1
 #                - JwtValidation
-
-            - id: medical-service-route
-              uri: ${MEDICAL_SERVICE_URI:http://localhost:8082}
-              predicates:
-                - Path=/api/health-events/**
-              filters:
-                - StripPrefix=1
-                - JwtValidation
-            - id: medication-service-route
-              uri: ${MEDICATION_SERVICE_URI:http://localhost:8082}
-              predicates:
-                - Path=/api/medication/**
-              filters:
-                - StripPrefix=1
-                - JwtValidation
-
-            - id: weight-service-route
-              uri: ${WEIGHT_SERVICE_URI:http://localhost:8083}
-              predicates:
-                - Path=/api/weight/**
-              filters:
-                - StripPrefix=1
-                - JwtValidation
+#            - id: medication-service-route
+#              uri: ${MEDICATION_SERVICE_URI:http://localhost:8082}
+#              predicates:
+#                - Path=/api/medication/**
+#              filters:
+#                - StripPrefix=1
+#                - JwtValidation
+#
+#            - id: weight-service-route
+#              uri: ${WEIGHT_SERVICE_URI:http://localhost:8083}
+#              predicates:
+#                - Path=/api/weight/**
+#              filters:
+#                - StripPrefix=1
+#                - JwtValidation

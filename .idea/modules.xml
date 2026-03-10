@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Ranzo.iml" filepath="$PROJECT_DIR$/Ranzo.iml" />
       <module fileurl="file://$PROJECT_DIR$/ranzo/ranzo.iml" filepath="$PROJECT_DIR$/ranzo/ranzo.iml" />
     </modules>
   </component>
