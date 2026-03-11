@@ -1,130 +1,96 @@
 # Ranzo
 
-Ranzo is a Java/Spring microservices backend for livestock management. It includes services for animal registry, medical events, weight records, authentication, and an API Gateway that routes external requests.
+Ranzo is a Java/Spring **modulith** backend for livestock management. The system runs as a single Spring Boot
+application with clear module boundaries for authentication, animal registry, medical events/medication, and weight
+records.
 
-## Project Modules
+## Project Structure
 
-- `api-gateway` (`:8085`): Entry point, request routing, JWT validation for protected routes.
-- `authentication-service` (`:8084`): User registration, login, JWT issuance and token validation.
-- `animal-registry-service` (`:8081`): Animal profile registration and lifecycle updates.
-- `medical-service` (`:8082`): Health events and medication records.
-- `weight-record-service` (`:8083`): Weight tracking and average daily gain updates.
-- `integration-tests`: REST Assured + JUnit integration tests.
+- `ranzo`: Main Spring Boot modulith application (single deployable).
 - `api-requests`: IntelliJ `.http` request collections.
+- `integration-tests`: REST Assured + JUnit integration tests (legacy microservices era).
+- `api-gateway` and other service folders: legacy microservices code (not used by the modulith app).
 
 ## Tech Stack
 
 - Java 25
-- Spring Boot 4.x
+- Spring Boot 4.0.3
+- Spring Modulith 2.0.3
 - Spring Data JPA
 - Spring Security + JWT (`jjwt`)
-- Spring Cloud Gateway (WebFlux)
+- Spring Web MVC
 - PostgreSQL
-- Maven (`mvnw` wrappers in services)
-- Dockerfiles per service
+- Maven (`mvnw`)
 
 ## High-Level Architecture
 
 ```mermaid
 flowchart LR
-    C[Client] --> G[API Gateway :8085]
-    G --> A[Auth Service :8084]
-    G --> AR[Animal Registry :8081]
-    G --> M[Medical Service :8082]
-    G --> W[Weight Service :8083]
-
-    AR --> DB1[(Postgres :5050)]
-    M --> DB2[(Postgres :5040)]
-    W --> DB3[(Postgres :5060)]
-    A --> DB4[(Postgres :5030)]
+  C[Client] --> APP[Ranzo App :8080]
+  APP --> AUTH[Authentication Module]
+  APP --> REG[Registry Module]
+  APP --> MED[Medical Module]
+  APP --> WGT[Weight Module]
+  APP --> DB[(Postgres :5050)]
 ```
 
 ## Prerequisites
 
 - JDK 25 installed and active (`java -version`)
-- Maven 3.9+ (for integration-tests) or use each service `./mvnw`
-- PostgreSQL instances reachable on:
-  - `localhost:5030` (auth)
-  - `localhost:5040` (medical)
-  - `localhost:5050` (animal)
-  - `localhost:5060` (weight)
-- Database credentials expected by services:
-  - username: `admin_user`
-  - password: `password`
-  - database: `postgres`
+- PostgreSQL reachable on `localhost:5050`
+- Database credentials expected by the modulith app:
+  - username: `user`
+  - password: `secret`
+  - database: `db`
 
 ## Environment and Configuration
 
-### Service ports
+### App port
 
-- `animal-registry-service`: `8081`
-- `medical-service`: `8082`
-- `weight-record-service`: `8083`
-- `authentication-service`: `8084`
-- `api-gateway`: `8085`
+- Ranzo modulith app: `8080` (default Spring Boot port)
 
-### Gateway route URIs (override with env vars)
+### Database config (application.properties)
 
-- `AUTH_SERVICE_URI` (default `http://localhost:8084`)
-- `ANIMAL_SERVICE_URI` (default `http://localhost:8081`)
-- `MEDICAL_SERVICE_URI` (default `http://localhost:8082`)
-- `MEDICATION_SERVICE_URI` (default `http://localhost:8082`)
-- `WEIGHT_SERVICE_URI` (default `http://localhost:8083`)
-- `AUTH_SERVICE_URL` (used by JWT validation filter, default `http://localhost:8084`)
+- `spring.datasource.url=jdbc:postgresql://localhost:5050/db`
+- `spring.datasource.username=user`
+- `spring.datasource.password=secret`
+
+### JWT
+
+- `jwt.secret` in `application.properties` (development-only default)
 
 ## Running Locally
 
-Start services in this order:
-
-1. `authentication-service`
-2. `animal-registry-service`
-3. `medical-service`
-4. `weight-record-service`
-5. `api-gateway`
-
-Example commands:
-
 ```bash
-cd authentication-service && ./mvnw spring-boot:run
-cd animal-registry-service && ./mvnw spring-boot:run
-cd medical-service && ./mvnw spring-boot:run
-cd weight-record-service && ./mvnw spring-boot:run
-cd api-gateway && ./mvnw spring-boot:run
+cd ranzo
+./mvnw spring-boot:run
 ```
 
 ## Authentication Flow
 
 1. Register a user: `POST /auth/register`
-2. Login: `POST /auth/login` to receive JWT token.
-3. Send `Authorization: Bearer <token>` when calling protected gateway routes.
-4. Gateway validates token by calling auth service `GET /auth/validate`.
+2. Login: `POST /auth/login` to receive a JWT token.
+3. Send `Authorization: Bearer <token>` when calling protected endpoints.
+4. Validate token: `GET /auth/validate`
 
 ## API Overview
 
-### Through Gateway (`http://localhost:8085`)
+Base URL: `http://localhost:8080`
 
 - `POST /auth/register`
 - `POST /auth/login`
 - `GET /auth/validate`
-- `GET|POST|PATCH|DELETE /api/animals/**` (JWT required)
-- `GET|POST|DELETE /api/health-events/**`
-- `GET|POST|DELETE /api/medication/**`
-- `GET|POST|PATCH|DELETE /api/weight/**` 
-
-### Service-native bases
-
-- Animal: `/animals`
-- Medical events: `/health-events`
-- Medication: `/medication`
-- Weight: `/weight`
-- Auth: `/auth`
+- `GET|POST|PATCH|DELETE /animals/**` (JWT required)
+- `GET|POST|DELETE /health-events/**` (JWT required)
+- `GET|POST|DELETE /medication/**` (JWT required)
+- `GET|POST|PATCH|DELETE /weight/**` (JWT required)
 
 ## Example Requests
 
 Register user:
 
 ```http
-POST http://localhost:8085/auth/register
+POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
@@ -137,7 +103,7 @@ Content-Type: application/json
 Login:
 
 ```http
-POST http://localhost:8085/auth/login
+POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
@@ -149,14 +115,14 @@ Content-Type: application/json
 Get animals (via gateway, protected):
 
 ```http
-GET http://localhost:8085/api/animals
+GET http://localhost:8080/animals
 Authorization: Bearer <JWT>
 ```
 
-Record weight (service direct):
+Record weight:
 
 ```http
-POST http://localhost:8083/weight
+POST http://localhost:8080/weight
 Content-Type: application/json
 
 {
@@ -168,48 +134,28 @@ Content-Type: application/json
 
 ## OpenAPI / Swagger UI
 
-Available on services that include springdoc:
+Available on the modulith app:
 
-- Auth: `http://localhost:8084/swagger-ui/index.html`
-- Animal: `http://localhost:8081/swagger-ui/index.html`
-- Medical: `http://localhost:8082/swagger-ui/index.html`
-- Weight: `http://localhost:8083/swagger-ui/index.html`
+- `http://localhost:8080/swagger-ui/index.html`
 
 ## Running Tests
 
-Per service:
-
 ```bash
-cd <service-folder>
+cd ranzo
 ./mvnw test
 ```
 
-Integration tests:
-
-```bash
-cd integration-tests
-mvn test
-```
-
-Integration tests expect running services reachable through gateway at `http://localhost:8085` and valid credentials for login.
+Integration tests in `integration-tests` target the old microservices/gateway layout and are currently out of date for
+the modulith.
 
 ## Docker
 
-Each service contains a multi-stage Dockerfile.
-
-Build example:
-
-```bash
-cd api-gateway
-docker build -t ranzo/api-gateway:local .
-```
-
-Repeat for each service directory.
+The modulith app can be containerized from `ranzo/` (Dockerfile not yet included).
 
 ## Useful Repo Assets
 
 - `api-requests/`: ready-made `.http` files for manual API testing.
-- `integration-tests/src/test/java`: API-level integration test scenarios.
+- `integration-tests/src/test/java`: legacy API-level integration test scenarios.
 
 ## Known Issues / Notes
 
